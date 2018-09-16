@@ -16,6 +16,7 @@ import java.sql.SQLException;
 public class PooledConnection  {
 
     private final ConnectionPool pool;
+    // 实际的数据库连接对象，基于第三方Driver的实现。比如H2的JdbcConnection
     private Connection connection;
     private Driver driver;
 

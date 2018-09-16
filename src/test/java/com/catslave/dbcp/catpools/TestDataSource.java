@@ -23,6 +23,9 @@ public class TestDataSource {
         dataSource.setProperties(properties);
         Connection connection = dataSource.getConnection();
         assert connection != null;
+        Statement connectionStatement = connection.createStatement();
+
+
         PooledConnection pooledConnection = (PooledConnection) connection;
         Connection connectionActual = pooledConnection.getConnection();
         Statement statement = connectionActual.createStatement();

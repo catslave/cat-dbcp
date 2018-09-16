@@ -84,6 +84,13 @@ public class ProxyConnection extends JdbcInterceptor {
         } else if (compare(GETCONNECTION_VAL,method) && connection!=null) {
             return connection.getConnection();
         }
+        // 以上方法会被拦截，剩余的方法直接调用第三方Driver原生实现
+
+        PooledConnection pooledConnection = connection;
+        if(pooledConnection != null) {
+            return method.invoke(pooledConnection.getConnection(), args);
+        }
+
         return super.invoke(proxy, method, args);
     }
 
