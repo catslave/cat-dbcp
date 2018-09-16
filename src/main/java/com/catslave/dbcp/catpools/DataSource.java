@@ -49,25 +49,13 @@ public class DataSource implements javax.sql.DataSource {
             Connection connection = (Connection) proxyClassConstructor.newInstance(
                     new Object[]{new ProxyConnection(pool, pooledConnection)});
             return connection;
-        } catch (
-                NoSuchMethodException e)
-
-        {
+        } catch (NoSuchMethodException e) {
             e.printStackTrace();
-        } catch (
-                IllegalAccessException e)
-
-        {
+        } catch (IllegalAccessException e) {
             e.printStackTrace();
-        } catch (
-                InstantiationException e)
-
-        {
+        } catch (InstantiationException e) {
             e.printStackTrace();
-        } catch (
-                InvocationTargetException e)
-
-        {
+        } catch (InvocationTargetException e) {
             e.printStackTrace();
         }
         return null;

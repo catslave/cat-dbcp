@@ -6,8 +6,19 @@ package com.catslave.dbcp.catpools;
  */
 public class ConnectionProperties {
 
+    /**
+     * 最小空闲连接数，初始化连接数
+     */
     private volatile int minIdle = 10;
+    /**
+     * 获取连接，最大等待时间
+     */
     private volatile int maxWait = 10;
+    /**
+     * 最大空闲连接数，超过这个数量后就要进去等待
+     */
+    private volatile int maxActive = 20;
+
 
     public int getMinIdle() {
         return minIdle;
@@ -23,5 +34,13 @@ public class ConnectionProperties {
 
     public void setMaxWait(int maxWait) {
         this.maxWait = maxWait;
+    }
+
+    public int getMaxActive() {
+        return maxActive;
+    }
+
+    public void setMaxActive(int maxActive) {
+        this.maxActive = maxActive;
     }
 }
