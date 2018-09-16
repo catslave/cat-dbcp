@@ -18,6 +18,10 @@ public class ConnectionProperties {
      * 最大空闲连接数，超过这个数量后就要进去等待
      */
     private volatile int maxActive = 20;
+    /**
+     * 校验语句
+     */
+    private volatile String validationQuery = "SELECT 1";
 
 
     public int getMinIdle() {
@@ -42,5 +46,13 @@ public class ConnectionProperties {
 
     public void setMaxActive(int maxActive) {
         this.maxActive = maxActive;
+    }
+
+    public String getValidationQuery() {
+        return validationQuery;
+    }
+
+    public void setValidationQuery(String validationQuery) {
+        this.validationQuery = validationQuery;
     }
 }

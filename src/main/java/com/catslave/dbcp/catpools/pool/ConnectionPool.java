@@ -3,7 +3,9 @@ package com.catslave.dbcp.catpools.pool;
 import com.catslave.dbcp.catpools.ConnectionProperties;
 import com.catslave.dbcp.catpools.PooledConnection;
 
+import java.sql.Connection;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.LinkedBlockingDeque;
 import java.util.concurrent.TimeUnit;
@@ -63,6 +65,16 @@ public class ConnectionPool {
     }
 
     public boolean validateConnection(PooledConnection connection) {
+        String validationQuery = this.properties.getValidationQuery();
+        Connection con = connection.getConnection();
+        try {
+            Statement statement = con.createStatement();
+            statement.execute(validationQuery);
+            statement.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return false;
+        }
         return true;
     }
 
